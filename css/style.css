@@ -1,0 +1,251 @@
+/* ===========================
+   Variables
+   =========================== */
+:root {
+    --fond: #121110;
+    --fond-carte: #1c1a18;
+    --texte: #f2ede4;
+    --texte-doux: #a39c90;
+    --bordure: #2e2b27;
+
+    /* Couleurs par genre */
+    --hip-hop: #f5b82e;
+    --rock: #e5533d;
+    --rnb: #c77dff;
+    --metal: #8fa3ad;
+
+    --rayon: 10px;
+}
+
+/* ===========================
+   Base
+   =========================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--fond);
+    color: var(--texte);
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.4;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ===========================
+   Header / Footer
+   =========================== */
+header {
+    padding: 48px 24px 24px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+footer {
+    margin-top: auto;
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--texte-doux);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--bordure);
+}
+
+/* ===========================
+   Filtre
+   =========================== */
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+    overflow: hidden;
+}
+
+.filtre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.filtre label {
+    color: var(--texte-doux);
+    font-size: 0.95rem;
+}
+
+#genre {
+    appearance: none;
+    padding: 10px 40px 10px 16px;
+    background: var(--fond-carte) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f2ede4' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;
+    color: var(--texte);
+    font: inherit;
+    font-weight: 500;
+    border: 1px solid var(--bordure);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+#genre:hover,
+#genre:focus-visible {
+    border-color: var(--texte-doux);
+    outline: none;
+}
+
+/* ===========================
+   Grille
+   =========================== */
+
+.grille-disque {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+/* Chaque disque */
+.grille-disque>div {
+    --accent: var(--texte-doux);
+    position: relative;
+    padding: 12px 12px 16px;
+    background: var(--fond-carte);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    cursor: pointer;
+    /* Pas de transition sur transform : GSAP s'en chargera (Flip, quickTo) */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.grille-disque>div:hover {
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px -12px var(--accent);
+}
+
+/* Couleur d'accent selon le genre */
+.grille-disque>.hip-hop {
+    --accent: var(--hip-hop);
+}
+
+.grille-disque>.rock {
+    --accent: var(--rock);
+}
+
+.grille-disque>.RnB {
+    --accent: var(--rnb);
+}
+
+.grille-disque>.metal {
+    --accent: var(--metal);
+}
+
+/* Pastille du genre en haut à droite */
+.grille-disque>div::after {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 3px 8px;
+    background: var(--accent);
+    color: var(--fond);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+}
+
+.grille-disque>.hip-hop::after {
+    content: "hip-hop";
+}
+
+.grille-disque>.rock::after {
+    content: "rock";
+}
+
+.grille-disque>.RnB::after {
+    content: "RnB";
+}
+
+.grille-disque>.metal::after {
+    content: "métal";
+}
+
+/* Pochette */
+.grille-disque img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: var(--bordure);
+    /* visible pendant le chargement */
+    border-radius: calc(var(--rayon) - 4px);
+    margin-bottom: 14px;
+}
+
+.grille-disque h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 4px;
+    /* Coupe les titres trop longs sur 2 lignes max */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.grille-disque p {
+    color: var(--texte-doux);
+    font-size: 0.875rem;
+}
+
+/* ===========================
+   Filtrage (à utiliser en JS)
+   =========================== */
+.cache {
+    display: none;
+}
+
+/* ===========================
+   Mobile
+   =========================== */
+@media (max-width: 600px) {
+    main {
+        padding: 0 16px 48px;
+    }
+
+    .grille-disque {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .grille-disque>div {
+        padding: 8px 8px 12px;
+    }
+
+    .grille-disque>div::after {
+        top: 14px;
+        right: 14px;
+    }
+
+    .grille-disque h3 {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vinyle trie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="libs/minified/gsap.min.js" defer></script>
+    <script src="libs/minified/Flip.min.js" defer></script>
+    <script src="js/trie.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Bac à disques</h1>
+    </header>
+    <main>
+        <div class="filtre">
+            <label for="genre">Choisissez un style de musique&nbsp;:</label>
+
+            <select id="genre">
+                <option value="">--Veuillez choisir une option--</option>
+                <option value="tous">tous</option>
+                <option value="hip-hop">hip-hop</option>
+                <option value="rock">rock</option>
+                <option value="RnB">RnB</option>
+                <option value="metal">métal</option>
+            </select>
+        </div>
+
+        <div class="grille-disque">
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque1/400" alt="Pochette de Illmatic">
+                <h3>Illmatic</h3>
+                <p>Nas</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque2/400" alt="Pochette de Nevermind">
+                <h3>Nevermind</h3>
+                <p>Nirvana</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque3/400" alt="Pochette de Channel Orange">
+                <h3>Channel Orange</h3>
+                <p>Frank Ocean</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque4/400" alt="Pochette de Master of Puppets">
+                <h3>Master of Puppets</h3>
+                <p>Metallica</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque5/400" alt="Pochette de Ready to Die">
+                <h3>Ready to Die</h3>
+                <p>The Notorious B.I.G.</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque6/400" alt="Pochette de OK Computer">
+                <h3>OK Computer</h3>
+                <p>Radiohead</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque7/400" alt="Pochette de Voodoo">
+                <h3>Voodoo</h3>
+                <p>D'Angelo</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque8/400" alt="Pochette de Paranoid">
+                <h3>Paranoid</h3>
+                <p>Black Sabbath</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque9/400" alt="Pochette de The Chronic">
+                <h3>The Chronic</h3>
+                <p>Dr. Dre</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque10/400" alt="Pochette de Led Zeppelin IV">
+                <h3>Led Zeppelin IV</h3>
+                <p>Led Zeppelin</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque11/400" alt="Pochette de The Miseducation of Lauryn Hill">
+                <h3>The Miseducation of Lauryn Hill</h3>
+                <p>Lauryn Hill</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque12/400" alt="Pochette de The Number of the Beast">
+                <h3>The Number of the Beast</h3>
+                <p>Iron Maiden</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque13/400" alt="Pochette de To Pimp a Butterfly">
+                <h3>To Pimp a Butterfly</h3>
+                <p>Kendrick Lamar</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque14/400" alt="Pochette de The Dark Side of the Moon">
+                <h3>The Dark Side of the Moon</h3>
+                <p>Pink Floyd</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque15/400" alt="Pochette de Ctrl">
+                <h3>Ctrl</h3>
+                <p>SZA</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque16/400" alt="Pochette de Reign in Blood">
+                <h3>Reign in Blood</h3>
+                <p>Slayer</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque17/400" alt="Pochette de The Blueprint">
+                <h3>The Blueprint</h3>
+                <p>Jay-Z</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque18/400" alt="Pochette de Is This It">
+                <h3>Is This It</h3>
+                <p>The Strokes</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque19/400" alt="Pochette de FutureSex/LoveSounds">
+                <h3>FutureSex/LoveSounds</h3>
+                <p>Justin Timberlake</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque20/400" alt="Pochette de Vulgar Display of Power">
+                <h3>Vulgar Display of Power</h3>
+                <p>Pantera</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque21/400" alt="Pochette de Madvillainy">
+                <h3>Madvillainy</h3>
+                <p>Madvillain</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque22/400" alt="Pochette de AM">
+                <h3>AM</h3>
+                <p>Arctic Monkeys</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque23/400" alt="Pochette de Confessions">
+                <h3>Confessions</h3>
+                <p>Usher</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque24/400" alt="Pochette de Iowa">
+                <h3>Iowa</h3>
+                <p>Slipknot</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque25/400" alt="Pochette de Enter the Wu-Tang (36 Chambers)">
+                <h3>Enter the Wu-Tang (36 Chambers)</h3>
+                <p>Wu-Tang Clan</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque26/400" alt="Pochette de London Calling">
+                <h3>London Calling</h3>
+                <p>The Clash</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque27/400" alt="Pochette de House of Balloons">
+                <h3>House of Balloons</h3>
+                <p>The Weeknd</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque28/400" alt="Pochette de Toxicity">
+                <h3>Toxicity</h3>
+                <p>System of a Down</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque29/400" alt="Pochette de Ipséité">
+                <h3>Ipséité</h3>
+                <p>Damso</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque30/400" alt="Pochette de Rumours">
+                <h3>Rumours</h3>
+                <p>Fleetwood Mac</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque31/400" alt="Pochette de Baduizm">
+                <h3>Baduizm</h3>
+                <p>Erykah Badu</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque32/400" alt="Pochette de From Mars to Sirius">
+                <h3>From Mars to Sirius</h3>
+                <p>Gojira</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque33/400" alt="Pochette de L'École du micro d'argent">
+                <h3>L'École du micro d'argent</h3>
+                <p>IAM</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque34/400" alt="Pochette de Back in Black">
+                <h3>Back in Black</h3>
+                <p>AC/DC</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque35/400" alt="Pochette de Songs in A Minor">
+                <h3>Songs in A Minor</h3>
+                <p>Alicia Keys</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque36/400" alt="Pochette de Ænima">
+                <h3>Ænima</h3>
+                <p>Tool</p>
+            </div>
+            <div class="disque hip-hop">
+                <img src="https://picsum.photos/seed/disque37/400" alt="Pochette de Ouest Side">
+                <h3>Ouest Side</h3>
+                <p>Booba</p>
+            </div>
+            <div class="disque rock">
+                <img src="https://picsum.photos/seed/disque38/400" alt="Pochette de Elephant">
+                <h3>Elephant</h3>
+                <p>The White Stripes</p>
+            </div>
+            <div class="disque RnB">
+                <img src="https://picsum.photos/seed/disque39/400" alt="Pochette de CrazySexyCool">
+                <h3>CrazySexyCool</h3>
+                <p>TLC</p>
+            </div>
+            <div class="disque metal">
+                <img src="https://picsum.photos/seed/disque40/400" alt="Pochette de Rust in Peace">
+                <h3>Rust in Peace</h3>
+                <p>Megadeth</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Projet GSAP · Bac à disques</p>
+    </footer>
+</body>
+
+</html>
